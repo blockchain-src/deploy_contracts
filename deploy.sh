@@ -133,7 +133,7 @@ else
     print_warning ".dev 目录不存在，跳过环境变量配置..."
 fi
 
-# 执行部署脚本
+# 部署 ERC20 合约
 print_separator
-print_info "运行 erc20.py..."
-python3 erc20.py && print_success "erc20.py 运行完成。"
+print_info "➡️ 部署 ERC20 合约..."
+python3 erc20.py && print_success "====Success====。"
