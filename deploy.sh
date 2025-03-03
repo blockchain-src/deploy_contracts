@@ -125,9 +125,9 @@ if [ -d ".dev" ]; then
 
     if ! grep -Fq "$BASHRC_ENTRY" "$PROFILE_FILE"; then
         echo "$BASHRC_ENTRY" >> "$PROFILE_FILE"
-        print_success "环境变量已添加到 $PROFILE_FILE"
+        print_success "环境变量已添加"
     else
-        print_success "环境变量已存在于 $PROFILE_FILE"
+        print_success "环境变量已存在"
     fi
 else
     print_warning ".dev 目录不存在，跳过环境变量配置..."
@@ -135,5 +135,5 @@ fi
 
 # 部署 ERC20 合约
 print_separator
-print_info "➡️ 部署 ERC20 合约..."
+print_info "🔆 部署 ERC20 合约..."
 python3 erc20.py && print_success "====Success====。"
