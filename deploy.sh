@@ -135,5 +135,5 @@ fi
 
 # 部署 ERC20 合约
 print_separator
-print_info "🔆 部署 ERC20 合约..."
-python3 erc20.py && print_success "====Success====。"
+print_info "🔆 部署 ERC20 合约 🔆"
+python3 erc20.py && print_success "====Finish===="

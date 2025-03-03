@@ -101,10 +101,11 @@ for private_key in private_keys:
         signed_transaction = w3.eth.account.sign_transaction(transaction, private_key)
         tx_hash = w3.eth.send_raw_transaction(signed_transaction.raw_transaction)
         
-        print(f"{YELLOW}{BOLD}🚀 正在部署合约...{RESET}")
-        print(f"⏳ 交易哈希: {tx_hash.hex()}\n")
+        print(f"{YELLOW}{BOLD}正在部署合约...{RESET}")
+        print(f"交易哈希: {tx_hash.hex()}\n")
         
         receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
         print(f"{GREEN}{BOLD}✅ 代币合约部署成功！合约地址: {receipt['contractAddress']}{RESET}\n")
+        print(f"{GREEN}{BOLD}----------------------------------------------------------------------{RESET}\n")
     except Exception as e:
         print(f"{RED}{BOLD}❌ 部署失败: {e}{RESET}\n")
