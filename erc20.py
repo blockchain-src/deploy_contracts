@@ -21,6 +21,13 @@ if not w3.is_connected():
     sys.exit(1)
 print(f"{GREEN}{BOLD}✅ 连接成功！{RESET}\n")
 
+# 输入代币名称
+name = input(f"{YELLOW}{BOLD}🏷️ 请输入代币名称 (Symbol): {RESET}").strip()
+if not name:
+    print(f"{RED}{BOLD}❌ 代币名称不能为空！{RESET}\n")
+    sys.exit(1)
+symbol = name  # 使 symbol 与 name 相同
+
 # 输入私钥列表
 print(f"{YELLOW}{BOLD}🔑 请输入您的私钥列表，每行一个，按两次回车确认:{RESET}")
 private_keys = []
@@ -38,28 +45,28 @@ if not private_keys:
     sys.exit(1)
 
 # Solidity 合约
-erc20_contract = """
+erc20_contract = f"""
 pragma solidity ^0.8.0;
-contract MyToken {
-    string public name = "HODL";
-    string public symbol = "HODL";
+contract MyToken {{
+    string public name = "{name}";
+    string public symbol = "{symbol}";
     uint8 public decimals = 18;
     uint256 public totalSupply;
     mapping(address => uint256) public balanceOf;
     event Transfer(address indexed from, address indexed to, uint256 value);
-    constructor(uint256 initialSupply) {
+    constructor(uint256 initialSupply) {{
         totalSupply = initialSupply * 10 ** uint256(decimals);
         balanceOf[msg.sender] = totalSupply;
-    }
-    function transfer(address to, uint256 amount) public returns (bool) {
+    }}
+    function transfer(address to, uint256 amount) public returns (bool) {{
         require(to != address(0), "ERC20: transfer to zero address");
         require(balanceOf[msg.sender] >= amount, "ERC20: insufficient balance");
         balanceOf[msg.sender] -= amount;
         balanceOf[to] += amount;
         emit Transfer(msg.sender, to, amount);
         return true;
-    }
-}
+    }}
+}}
 """
 
 print(f"{YELLOW}{BOLD}-正在编译 Solidity 合约...{RESET}")
