@@ -62,7 +62,7 @@ contract MyToken {
 }
 """
 
-print(f"{YELLOW}{BOLD}📦 正在编译 Solidity 合约...{RESET}\n")
+print(f"{YELLOW}{BOLD}-正在编译 Solidity 合约...{RESET}")
 install_solc("0.8.0")
 set_solc_version("0.8.0")
 compiled_sol = compile_standard({
@@ -101,7 +101,7 @@ for private_key in private_keys:
         signed_transaction = w3.eth.account.sign_transaction(transaction, private_key)
         tx_hash = w3.eth.send_raw_transaction(signed_transaction.raw_transaction)
         
-        print(f"{YELLOW}{BOLD}正在部署合约...{RESET}")
+        print(f"{YELLOW}{BOLD}-正在部署合约...{RESET}")
         print(f"交易哈希: {tx_hash.hex()}\n")
         
         receipt = w3.eth.wait_for_transaction_receipt(tx_hash)

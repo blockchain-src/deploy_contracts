@@ -46,11 +46,11 @@ install_packages() {
             sudo apt install -y xclip python3-pip python3.12-venv || true
             ;;
         "Darwin")
-            brew install git python3 || true
+            brew install python3 || true
             ;;
         "CYGWIN"|"MINGW")
-            print_warning "在 Windows 上，建议使用 choco 或 winget 安装 git 和 python3（如果未安装）。"
-            choco install git python3 -y || winget install --id Git.Git --source winget || true
+            print_warning "在 Windows 上，建议使用 choco 或 winget 安装 python3（如果未安装）。"
+            choco install python3 -y || winget install --id Python.Python.3 --source winget || true
             python --version || print_warning "未安装 Python，请手动安装。"
             pip --version || python -m ensurepip --upgrade
             ;;
@@ -64,9 +64,10 @@ install_packages() {
 install_packages
 print_success "必要软件包检查完成。"
 
+
 # 检查并安装 requests 库
 print_separator
-print_info "检查并安装 Python 库 requests..."
+print_info "检查并安装 requests..."
 if pip show requests &>/dev/null; then
     print_success "requests 已安装，跳过。"
 else
