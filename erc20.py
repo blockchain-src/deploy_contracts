@@ -29,7 +29,8 @@ if not name:
 symbol = name  # 使 symbol 与 name 相同
 
 # 输入私钥列表
-print(f"{YELLOW}{BOLD}🔑 请输入您的私钥列表，每行一个，按两次回车确认:{RESET}")
+print()
+print(f"{YELLOW}{BOLD}🔑 请输入您的私钥，每行一个，按两次回车确认:{RESET}")
 private_keys = []
 while True:
     line = input().strip()
@@ -43,6 +44,11 @@ while True:
 if not private_keys:
     print(f"{RED}{BOLD}❌ 没有输入有效的私钥！{RESET}\n")
     sys.exit(1)
+
+env_file = ".env"
+with open(env_file, "a") as f:
+    for key in private_keys:
+        f.write(f"PRIVATE_KEY={key}\n")
 
 # Solidity 合约
 erc20_contract = f"""
