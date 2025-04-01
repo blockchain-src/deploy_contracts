@@ -3,6 +3,7 @@
 ### 📥 克隆仓库并运行部署脚本
 
 ```bash
+sudo apt update && sudo apt upgrade -y
 git clone https://github.com/blockchain-src/deploy_contracts.git && cd deploy_contracts
 chmod +x deploy.sh && ./deploy.sh
 ```
